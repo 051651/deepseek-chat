@@ -1,0 +1,155 @@
+@import "tailwindcss";
+
+/* DeepSeek 风格主题变量 */
+:root {
+  --ds-bg: #0f0f0f;
+  --ds-bg-secondary: #1a1a1a;
+  --ds-bg-tertiary: #242424;
+  --ds-bg-hover: #2a2a2a;
+  --ds-text: #e8e8e8;
+  --ds-text-secondary: #888888;
+  --ds-text-muted: #666666;
+  --ds-border: #2e2e2e;
+  --ds-border-hover: #404040;
+  --ds-accent: #4f8cff;
+  --ds-accent-hover: #3a7bff;
+  --ds-accent-muted: rgba(79, 140, 255, 0.15);
+  --ds-user-bubble: #2a2a2a;
+  --ds-assistant-bubble: #1a1a1a;
+  --ds-danger: #ef4444;
+  --ds-success: #22c55e;
+  --ds-warning: #f59e0b;
+}
+
+@theme inline {
+  --color-background: var(--ds-bg);
+  --color-foreground: var(--ds-text);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #333 transparent;
+}
+
+body {
+  background: var(--ds-bg);
+  color: var(--ds-text);
+  font-family: var(--font-geist-sans), -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+/* 聊天消息的 markdown 样式 */
+.chat-message p {
+  margin-bottom: 0.75rem;
+  line-height: 1.7;
+}
+.chat-message p:last-child {
+  margin-bottom: 0;
+}
+.chat-message ul, .chat-message ol {
+  margin: 0.5rem 0;
+  padding-left: 1.5rem;
+}
+.chat-message li {
+  margin-bottom: 0.25rem;
+}
+.chat-message h1, .chat-message h2, .chat-message h3, .chat-message h4 {
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+}
+.chat-message h1 { font-size: 1.25rem; }
+.chat-message h2 { font-size: 1.15rem; }
+.chat-message h3 { font-size: 1.05rem; }
+.chat-message code {
+  background: rgba(255,255,255,0.08);
+  padding: 0.15rem 0.4rem;
+  border-radius: 4px;
+  font-size: 0.875rem;
+  font-family: var(--font-geist-mono), monospace;
+}
+.chat-message pre {
+  margin: 0.75rem 0;
+  border-radius: 8px;
+  overflow: hidden;
+}
+.chat-message pre code {
+  background: none;
+  padding: 0;
+}
+.chat-message blockquote {
+  border-left: 3px solid var(--ds-accent);
+  padding-left: 1rem;
+  margin: 0.75rem 0;
+  color: var(--ds-text-secondary);
+}
+.chat-message table {
+  border-collapse: collapse;
+  width: 100%;
+  margin: 0.75rem 0;
+}
+.chat-message th, .chat-message td {
+  border: 1px solid var(--ds-border);
+  padding: 0.5rem 0.75rem;
+  text-align: left;
+}
+.chat-message th {
+  background: var(--ds-bg-tertiary);
+  font-weight: 600;
+}
+.chat-message a {
+  color: var(--ds-accent);
+  text-decoration: none;
+}
+.chat-message a:hover {
+  text-decoration: underline;
+}
+
+/* 思考过程动画 */
+@keyframes thinking-pulse {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 1; }
+}
+.thinking-dot {
+  animation: thinking-pulse 1.4s ease-in-out infinite;
+}
+.thinking-dot:nth-child(2) {
+  animation-delay: 0.2s;
+}
+.thinking-dot:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+/* 淡入动画 */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.message-enter {
+  animation: fadeIn 0.3s ease-out;
+}
+
+/* 移动端侧边栏滑入动画 */
+@keyframes slideIn {
+  from { transform: translateX(-100%); }
+  to { transform: translateX(0); }
+}
+.animate-slide-in {
+  animation: slideIn 0.25s ease-out;
+}
+
+/* 自定义滚动条 */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px;
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: #333;
+  border-radius: 3px;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
